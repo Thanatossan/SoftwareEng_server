@@ -5,8 +5,9 @@ const controllers = require('../controllers/index')
 //showหน้าdashboard
 router.get("/",controllers.dashboardController.show)
 //show todolist ที่ต้องทำ
-router.get("/show",controllers.todolistController.show_todolist)
 //ไปที่หน้าsubmit สิ่งที่ต้องทำ
-router.post("/saved",controllers.todolistController.add_topic)
+router.post("/added",controllers.todolistController.add_title)
+router.get("/showtitle",controllers.todolistController.show_title)
+router.patch("/updated",controllers.todolistController.update_data)
     
 module.exports = router;
