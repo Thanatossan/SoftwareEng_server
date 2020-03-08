@@ -9,20 +9,22 @@ module.exports = {
         const title = req.body.title
         const isComplete = req.body.iscom
         const student_id = req.body.id
-        const sql = "INSERT INTO `todolist` ( `title`,`isComplete`,`student_code`) VALUES('" + title + "','" + isComplete + "'," + student_id + ")"
+        const createTitle = "INSERT INTO `todolist` ( `title`,`isComplete`,`student_code`) VALUES('" + title + "','" + isComplete + "'," + student_id + ")"
         
         console.log(data)
-        database.query(sql)
+        database.query(createTitle)
+        res.send("Created!!")
         res.sendStatus(201).end()
     },
 
     show_title(req, res, next) {
-        const sql = 'select title,isComplete from todolist'
-        console.log(sql);
+        const studentID = req.body.id
+        const selectTitle = 'select title,isComplete from todolist where student_code = ' + studentID
+        console.log(selectTitle);
         
-        database.query(sql, (err, data) => {
+        database.query(selectTitle, (err, data) => {
             console.log(data);
-            res.sendStatus(200).json(data)  
+            res.json(data)  
         })
     },
 
@@ -32,18 +34,18 @@ module.exports = {
         const deadline = req.body.deadline.toString()
         const id = parseInt(req.body.id)
 
-        const sql_1 = "SELECT MAX(Todolist_id) as id FROM `todolist` WHERE `student_code` = " + id + " ORDER BY `isComplete`"
+        const selectMax = "SELECT MAX(Todolist_id) as id FROM `todolist` WHERE `student_code` = " + id + " ORDER BY `isComplete`"
 
-        database.query(sql_1, (err, data) => {
+        database.query(selectMax, (err, data) => {
             const id_max = data[0].id
             console.log(id_max);
 
-            const sql_2 = "UPDATE `todolist` SET `description` = '" + description + "', `priority_level` = " + priority + ", `deadline` = '" + deadline + "' WHERE `Todolist_id` = " + id_max
-            console.log(sql_2)
+            const updateSQL = "UPDATE `todolist` SET `description` = '" + description + "', `priority_level` = " + priority + ", `deadline` = '" + deadline + "' WHERE `Todolist_id` = " + id_max
+            console.log(updateSQL)
             
-            database.query(sql_2)
+            database.query(updateSQL)
     
-            res.send("update!!!!!")
+            res.send("No Content!!")
             res.sendStatus(204).end()
         })
 
