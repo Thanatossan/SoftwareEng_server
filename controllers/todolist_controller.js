@@ -22,6 +22,7 @@ module.exports = {
         })
     },
 
+
     updateDetail(req, res, next) {
         const description = req.body.description
         const priority = parseInt(req.body.priority)
@@ -44,5 +45,5 @@ module.exports = {
         console.log("Deleted!!")
         res.sendStatus(404).end()
     }
-    
+
 }

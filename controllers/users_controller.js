@@ -1,5 +1,4 @@
 const db = require('../database')
-
 const checkID = (data,idCheck, everHave) => {
     lenght = Object.keys(data).length   
     for (i = 0; i < lenght; i++) {
