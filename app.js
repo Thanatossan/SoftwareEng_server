@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+var BodyParser = require('body-parser')
 const db = require('./database')
 const api = require('./router/api')
 const cors = require('cors')
@@ -9,6 +10,10 @@ db.connect((err)=>{
     if(err) throw err
     console.log("Database connected!!!");
 })
+
+app.use(BodyParser.json())
+app.use(BodyParser.urlencoded({ extended: true }))
+
 //use for fronted can use command from backend
 app.use(cors({
     origin: true,
