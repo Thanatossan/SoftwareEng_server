@@ -1,6 +1,6 @@
 const db = require('../database')
-const checkID = (data,idCheck, everHave) => {
-    lenght = Object.keys(data).length   
+const checkID = (data, idCheck, everHave) => {
+    lenght = Object.keys(data).length
     for (i = 0; i < lenght; i++) {
         if (idCheck == data[i].student_code) {   //check id that ever have or not
             console.log("Have ever!!!");
@@ -8,10 +8,10 @@ const checkID = (data,idCheck, everHave) => {
             break
         }
     }
-    if(everHave==true){
+    if (everHave == true) {
         return true
     }
-    else{
+    else {
         return false
     }
 }
@@ -19,10 +19,11 @@ const checkID = (data,idCheck, everHave) => {
 module.exports = {
 
     checkUserLogin(req, res, next) {
-        const idCheck = req.body.id
+        const idCheck = req.params.id
+        console.log(idCheck)
         const selectStudent = 'select student_code from users'
         db.query(selectStudent, (err, data) => {
-            const everHave = checkID(data,idCheck,false)
+            const everHave = checkID(data, idCheck, false)
             if (everHave == true) {
                 console.log("DO NOTHING!!");
                 res.sendStatus(204).end()

@@ -5,8 +5,8 @@ const api = require('./router/api')
 const cors = require('cors')
 var BodyParser = require('body-parser')
 
-database.connect((err)=>{
-    if(err) throw err
+database.connect((err) => {
+    if (err) throw err
     console.log("Database connected!!!");
 })
 
@@ -19,15 +19,15 @@ app.use(cors({
     credentials: true
 }))
 
-app.get("/",(req,res)=>{
-    res.send("Hello to my nodejs server!!!")
-})
+//app.get("/", (req, res) => {
+//    res.send("Hello to my nodejs server!!!")
+//})
 
-app.use("/cpe",api)
+app.use('/api', api)
 
-const port = process.env.PORT || 5500
+const port = process.env.PORT || 4000
 
-app.listen(port,()=>{
-    console.log("server started at PORT " + port +"!!!")
+app.listen(port, () => {
+    console.log("server started at PORT " + port + "!!!")
 
 })
