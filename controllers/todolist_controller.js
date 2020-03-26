@@ -4,8 +4,9 @@ module.exports = {
 
     addTitle(req, res, next) {
         const title = req.body.title
-        const isComplete = req.body.iscom
+        const isComplete = req.body.isComplete
         const student_id = req.params.id
+        console.log(req.body.isComplete)
         const createTitle = "INSERT INTO `todolist` ( `title`,`isComplete`,`student_code`) VALUES('" + title + "','" + isComplete + "'," + student_id + ")"
         database.query(createTitle)
         res.send("Created!!")
@@ -15,9 +16,9 @@ module.exports = {
     showTitle(req, res, next) {
         const studentID = req.params.id
         const selectTitle = 'SELECT Todolist_id,title,isComplete,description,priority_level,deadline FROM todolist WHERE student_code = ' + studentID
-        console.log(selectTitle);
+        // console.log(selectTitle);
         database.query(selectTitle, (err, data) => {
-            console.log(data);
+            // console.log(data);
             res.json(data)
         })
     },
@@ -43,7 +44,6 @@ module.exports = {
         const deleteData = 'DELETE FROM todolist WHERE todolist.Todolist_id =' + titleID
         database.query(deleteData)
         console.log("Deleted!!")
-        res.sendStatus(404).end()
     }
 
 }
