@@ -8,7 +8,7 @@ router.post("/users/login/:id", controllers.usersController.checkUserLogin)
 
 router.post("/todolist/added/:id", controllers.todolistController.addTitle)
 router.get("/todolist/showtitle/:id", controllers.todolistController.showTitle)
-router.patch("/todolist/updated/:id", controllers.todolistController.updateDetail)
+router.post("/todolist/updated/:id", controllers.todolistController.updateDetail)
 router.delete("/todolist/deleted/:id", controllers.todolistController.deleteTitle)
 
 router.get("/calendar/topic/:id", controllers.calendarController.getEvent)

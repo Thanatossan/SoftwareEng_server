@@ -25,14 +25,17 @@ module.exports = {
 
 
     updateDetail(req, res, next) {
+        const title = req.body.title
         const description = req.body.description
         const priority = parseInt(req.body.priority)
         const deadline = req.body.deadline.toString()
-        const id = parseInt(req.params.id)
-        const selectMax = "SELECT MAX(Todolist_id) AS id FROM `todolist` WHERE `student_code` = " + id + " ORDER BY `isComplete`"
-        database.query(selectMax, (err, data) => {
-            const idMax = data[0].id
-            const updateData = "UPDATE `todolist` SET `description` = '" + description + "', `priority_level` = " + priority + ", `deadline` = '" + deadline + "' WHERE `Todolist_id` = " + idMax
+        const Todolist_id = req.params.id
+        // const selectMax = "SELECT MAX(Todolist_id) AS id FROM `todolist` WHERE `student_code` = " + id + " ORDER BY `isComplete`"
+        const selectId = 'SELECT Todolist_id FROM todolist WHERE Todolist_id = ' + Todolist_id
+        // database.query(selectMax, (err, data) => {
+        database.query(selectId, (err, data) => {
+            // const idMax = data[0].id
+            const updateData = "UPDATE `todolist` SET `title` = '" + title + "',`description` = '" + description + "', `priority_level` = " + priority + ", `deadline` = '" + deadline + "' WHERE `Todolist_id` = " + Todolist_id
             database.query(updateData)
             res.send("Updated!!")
             res.end()
