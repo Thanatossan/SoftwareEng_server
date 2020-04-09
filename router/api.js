@@ -10,6 +10,8 @@ router.post("/todolist/added/:id", controllers.todolistController.addTitle)
 router.get("/todolist/showtitle/:id", controllers.todolistController.showTitle)
 router.post("/todolist/updated/:id", controllers.todolistController.updateDetail)
 router.delete("/todolist/deleted/:id", controllers.todolistController.deleteTitle)
+router.post("/todolist/tickon/:todoid", controllers.todolistController.tickrightOn)
+router.post("/todolist/tickoff/:todoid", controllers.todolistController.tickrightOff)
 
 router.get("/calendar/topic/:id", controllers.calendarController.getEvent)
 router.post("/calendar/created/:id", controllers.calendarController.addEvent)

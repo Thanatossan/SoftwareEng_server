@@ -47,6 +47,23 @@ module.exports = {
         const deleteData = 'DELETE FROM todolist WHERE todolist.Todolist_id =' + titleID
         database.query(deleteData)
         console.log("Deleted!!")
-    }
+    },
 
+    tickrightOn(req, res, next) {
+        const todolistID = req.params.todoid
+        const tickon = "UPDATE `todolist` SET `isComplete` =  '" + 1 + "' WHERE `Todolist_id` =" + todolistID
+        database.query(tickon)
+        console.log("tickON")
+        res.send("tickON!!")
+        res.end()
+    },
+
+    tickrightOff(req, res, next) {
+        const todolistID = req.params.todoid
+        const tickoff = "UPDATE `todolist` SET `isComplete` =  '" + 0 + "' WHERE `Todolist_id` =" + todolistID
+        database.query(tickoff)
+        console.log("tickOFF")
+        res.send("tickOFF!!")
+        res.end()
+    }
 }
