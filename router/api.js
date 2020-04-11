@@ -15,6 +15,7 @@ router.post("/todolist/tickoff/:todoid", controllers.todolistController.tickrigh
 
 router.get("/calendar/topic/:id", controllers.calendarController.getEvent)
 router.post("/calendar/created/:id", controllers.calendarController.addEvent)
+router.post("/calendar/updated/:id", controllers.calendarController.updateEvent)
 router.delete("/calendar/deleted/:id", controllers.calendarController.deleteEvent)
 
 module.exports = router;
