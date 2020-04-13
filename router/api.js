@@ -4,6 +4,8 @@ const controllers = require('../controllers/index')
 router.get('/id=:id', (req, res) => {
     res.send('Your requested is ' + req.params.id)
 })
+
+router.get("/schedule/get/:major", controllers.scheduleController.getSubject)
 router.post("/users/login/:id", controllers.usersController.checkUserLogin)
 
 router.post("/todolist/added/:id", controllers.todolistController.addTitle)
