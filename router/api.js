@@ -6,6 +6,8 @@ router.get('/id=:id', (req, res) => {
 })
 
 router.get("/schedule/get/:major", controllers.scheduleController.getSubject)
+router.post("/schedule/created", controllers.scheduleController.addSubject)
+
 router.post("/users/login/:id", controllers.usersController.checkUserLogin)
 
 router.post("/todolist/added/:id", controllers.todolistController.addTitle)
