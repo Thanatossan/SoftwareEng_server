@@ -49,21 +49,13 @@ module.exports = {
         console.log("Deleted!!")
     },
 
-    tickrightOn(req, res, next) {
+    tickCommand(req, res, next) {
         const todolistID = req.params.todoid
-        const tickon = "UPDATE `todolist` SET `isComplete` =  '" + 1 + "' WHERE `Todolist_id` =" + todolistID
-        database.query(tickon)
-        console.log("tickON")
-        res.send("tickON!!")
-        res.end()
-    },
-
-    tickrightOff(req, res, next) {
-        const todolistID = req.params.todoid
-        const tickoff = "UPDATE `todolist` SET `isComplete` =  '" + 0 + "' WHERE `Todolist_id` =" + todolistID
-        database.query(tickoff)
-        console.log("tickOFF")
-        res.send("tickOFF!!")
+        const iscom = req.body.iscom
+        const tickComplete = "UPDATE `todolist` SET `isComplete` =  '" + iscom + "' WHERE `Todolist_id` =" + todolistID
+        database.query(tickComplete)
+        console.log("tickComplete")
+        res.send("tickComplete!!")
         res.end()
     }
 }
