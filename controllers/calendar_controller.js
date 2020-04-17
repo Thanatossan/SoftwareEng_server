@@ -3,7 +3,7 @@ const database = require('../database')
 module.exports = {
     getEvent(req, res, next) {
         const studentCode = req.params.id
-        const sqlSelect = 'select * from calendar where student_code =' + studentCode
+        const sqlSelect = 'select id,title,start,end from calendar where student_code =' + studentCode
         database.query(sqlSelect, (err, data) => {
             console.log(data)
             res.json(data)
@@ -14,14 +14,16 @@ module.exports = {
         console.log(data)
         const studentCode = req.params.id
         const title = data.title
-        const start = data.start
-        const end = data.end
-        const sqlInsert = "INSERT INTO `calendar` (`title` , `start`, `end`, `student_code`) VALUES ('" + title + "', '" + start + "', '" + end + "', '" + studentCode + "')"
-        console.log(sqlInsert)
 
+        const startDate = data.start
+        // const endDate = data.endDate
+        // const sqlInsert = "INSERT INTO `calendar` (`title`, `startDate`, `endDate`, `student_code`) VALUES ('" + title + "', '" + startDate + "', '" + endDate + "', '" + studentCode + "')"
+        const sqlInsert = "INSERT INTO `calendar` (`title`, `startDate`, `student_code`) VALUES ('" + title + "', '" + startDate + "', '" + studentCode + "')"
+
+        console.log(sqlInsert)
         database.query(sqlInsert)
         console.log("Created!!!")
-        res.sendStatus(204).end()
+
     },
     deleteEvent(req, res, next) {
         const eventID = req.params.id
