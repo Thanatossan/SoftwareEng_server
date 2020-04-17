@@ -59,8 +59,8 @@ module.exports = {
     getDetail(req, res, next) {
         const studentID = req.params.id
         const selectTitle = 'SELECT * FROM users WHERE student_id = ' + studentID
-        // console.log(selectTitle);
-        database.query(selectTitle, (err, data) => {
+        console.log(selectTitle);
+        db.query(selectTitle, (err, data) => {
             // console.log(data);
             res.json(data)
         })
