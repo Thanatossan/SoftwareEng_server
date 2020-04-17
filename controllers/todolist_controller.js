@@ -7,7 +7,7 @@ module.exports = {
         const isComplete = req.body.isComplete
         const student_id = req.params.id
         console.log(req.body.isComplete)
-        const createTitle = "INSERT INTO `todolist` ( `title`,`isComplete`,`student_code`) VALUES('" + title + "','" + isComplete + "'," + student_id + ")"
+        const createTitle = "INSERT INTO `todolist` ( `title`,`isComplete`,`student_id`) VALUES('" + title + "','" + isComplete + "'," + student_id + ")"
         database.query(createTitle)
         res.send("Created!!")
         res.end()
@@ -15,7 +15,7 @@ module.exports = {
 
     showTitle(req, res, next) {
         const studentID = req.params.id
-        const selectTitle = 'SELECT Todolist_id,title,isComplete,description,priority_level,deadline FROM todolist WHERE student_code = ' + studentID
+        const selectTitle = 'SELECT Todolist_id,title,isComplete,description,priority_level,deadline FROM todolist WHERE student_id = ' + studentID
         // console.log(selectTitle);
         database.query(selectTitle, (err, data) => {
             // console.log(data);
