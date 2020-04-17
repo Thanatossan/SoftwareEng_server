@@ -14,10 +14,12 @@ module.exports = {
         console.log(data)
         const studentCode = req.params.id
         const title = data.title
+
         const startDate = data.start
         // const endDate = data.endDate
         // const sqlInsert = "INSERT INTO `calendar` (`title`, `startDate`, `endDate`, `student_code`) VALUES ('" + title + "', '" + startDate + "', '" + endDate + "', '" + studentCode + "')"
         const sqlInsert = "INSERT INTO `calendar` (`title`, `startDate`, `student_code`) VALUES ('" + title + "', '" + startDate + "', '" + studentCode + "')"
+
         console.log(sqlInsert)
         database.query(sqlInsert)
         console.log("Created!!!")
@@ -29,5 +31,19 @@ module.exports = {
         database.query(sqlDelete)
         console.log("DELETED!!!")
         res.sendStatus(404).end()
+    },
+
+    updateEvent(req, res, next) {
+        const data = req.body
+        const eventID = req.params.id
+        const title = data.title
+        const start = data.start
+        const end = data.end
+        const save = "UPDATE `calendar` SET `title` = '" + title + "' ,`start` = '" + start + "' ,`end` = '" + end + "' WHERE `id` =" + eventID
+        database.query(save)
+        console.log("save")
+        res.send("save!!")
+        res.end()
     }
+
 }
